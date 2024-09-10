@@ -847,7 +847,7 @@ test.describe('Dialer Page Body Tests', () => {
 
         //Click the Button and check that it is active
         await dialerPage.reviewCarouselButton2.click();
-        await page.waitForTimeout(1000);       
+        await page.waitForTimeout(1000);
         await expect.soft(dialerPage.reviewCarouselButton2).toHaveAttribute('class', dialerPage.activeReviewCarouselButton);
 
         //Assert that the other buttons are inactive
@@ -873,9 +873,9 @@ test.describe('Dialer Page Body Tests', () => {
 
         //Click the Button and check that it is active
         await dialerPage.reviewCarouselButton3.click();
-        await page.waitForTimeout(1000);       
+        await page.waitForTimeout(1000);
         await expect.soft(dialerPage.reviewCarouselButton3).toHaveAttribute('class', dialerPage.activeReviewCarouselButton);
-        
+
         //Assert that the other buttons are inactive
         await expect.soft(dialerPage.reviewCarouselButton1).toHaveAttribute('class', dialerPage.inactiveReviewCarouselButton);
         await expect.soft(dialerPage.reviewCarouselButton2).toHaveAttribute('class', dialerPage.inactiveReviewCarouselButton);
@@ -899,9 +899,9 @@ test.describe('Dialer Page Body Tests', () => {
 
         //Click the Button and check that it is active
         await dialerPage.reviewCarouselButton4.click();
-        await page.waitForTimeout(1000);       
+        await page.waitForTimeout(1000);
         await expect.soft(dialerPage.reviewCarouselButton4).toHaveAttribute('class', dialerPage.activeReviewCarouselButton);
-        
+
         //Assert that the other buttons are inactive
         await expect.soft(dialerPage.reviewCarouselButton1).toHaveAttribute('class', dialerPage.inactiveReviewCarouselButton);
         await expect.soft(dialerPage.reviewCarouselButton2).toHaveAttribute('class', dialerPage.inactiveReviewCarouselButton);
@@ -925,9 +925,9 @@ test.describe('Dialer Page Body Tests', () => {
 
         //Click the Button and check that it is active
         await dialerPage.reviewCarouselButton5.click();
-        await page.waitForTimeout(1000);       
+        await page.waitForTimeout(1000);
         await expect.soft(dialerPage.reviewCarouselButton5).toHaveAttribute('class', dialerPage.activeReviewCarouselButton);
-        
+
         //Assert that the other buttons are inactive
         await expect.soft(dialerPage.reviewCarouselButton1).toHaveAttribute('class', dialerPage.inactiveReviewCarouselButton);
         await expect.soft(dialerPage.reviewCarouselButton2).toHaveAttribute('class', dialerPage.inactiveReviewCarouselButton);
@@ -935,7 +935,7 @@ test.describe('Dialer Page Body Tests', () => {
         await expect.soft(dialerPage.reviewCarouselButton4).toHaveAttribute('class', dialerPage.inactiveReviewCarouselButton);
 
         //Assert Visual Check
-        await expect.soft(dialerPage.reviewsCarouselLocator).toHaveScreenshot(dialerPage.reviewsScreenshot5, {maxDiffPixelRatio : parseFloat(process.env.MaxPixelRatioComparion)});
+        await expect.soft(dialerPage.reviewsCarouselLocator).toHaveScreenshot(dialerPage.reviewsScreenshot5, { maxDiffPixelRatio: parseFloat(process.env.MaxPixelRatioComparion) });
 
         await dialerPage.page.waitForLoadState("load");
     })
@@ -988,10 +988,10 @@ test.describe('Dialer Page Body Tests', () => {
         const tabs = pages.context().pages();
 
         await tabs[1].waitForLoadState("load");
-        
+
         //Assert that the Upgrade button goes to the correct URL (in a seperate tab)
         await expect.soft(tabs[1]).toHaveURL(proPage.purchasePageURL);
-        await expect.soft(tabs[1]).toHaveTitle(proPage.purchasePageTitle);    
+        await expect.soft(tabs[1]).toHaveTitle(proPage.purchasePageTitle);
     })
 
     test('Test the View Plans & Pricing Button', async ({ page }) => {
@@ -1006,10 +1006,10 @@ test.describe('Dialer Page Body Tests', () => {
         await dialerPage.clickElement(dialerPage.viewPlansAndPricingButton);
 
         await page.waitForLoadState("load");
-        
+
         //Assert that the button goes to the correct URL
         await expect.soft(page).toHaveURL(proPage.pageURL);
-        await expect.soft(page).toHaveTitle(proPage.pageTitle);    
+        await expect.soft(page).toHaveTitle(proPage.pageTitle);
     })
 
     test('Test the Enterprise Inquiries Button', async ({ page }) => {
@@ -1022,10 +1022,10 @@ test.describe('Dialer Page Body Tests', () => {
         await expect(page.locator('#wcag-main-content')).toContainText('Enterprise Inquiries');
 
         await dialerPage.clickElement(dialerPage.enterpriseInquiriesButton);
-        
+
         //Assert that the button goes to the correct URL
         await expect.soft(page).toHaveURL(enterprisePage.pageURL);
-        await expect.soft(page).toHaveTitle(enterprisePage.pageTitle);    
+        await expect.soft(page).toHaveTitle(enterprisePage.pageTitle);
 
         await page.waitForLoadState('load');
     })
@@ -1038,12 +1038,12 @@ test.describe('Dialer Page Body Tests', () => {
         await page.waitForLoadState('load');
 
         await expect(page.locator('#wcag-main-content')).toContainText('Security Information');
-        
+
         await dialerPage.clickElement(dialerPage.securityInformationButton);
-        
+
         //Assert that the button goes to the correct URL
         await expect.soft(page).toHaveURL(securityPage.pageURL);
-        await expect.soft(page).toHaveTitle(securityPage.pageTitle);    
+        await expect.soft(page).toHaveTitle(securityPage.pageTitle);
 
         await page.waitForLoadState('load');
     })
@@ -1058,10 +1058,10 @@ test.describe('Dialer Page Body Tests', () => {
         await expect(page.locator('#wcag-main-content')).toContainText('Feature FAQ');
 
         await dialerPage.clickElement(dialerPage.featureFAQButton);
-        
+
         //Assert that the button goes to the correct URL
         await expect.soft(page).toHaveURL(supportPage.featureFAQURL);
-        await expect.soft(page).toHaveTitle(supportPage.featureFAQTitle);    
+        await expect.soft(page).toHaveTitle(supportPage.featureFAQTitle);
 
         await page.waitForLoadState('load');
     })
@@ -1074,18 +1074,18 @@ test.describe('Dialer Page Body Tests', () => {
         await page.waitForLoadState('load');
 
         await expect(page.locator('#wcag-main-content')).toContainText('Patent Information');
-        
+
         await dialerPage.clickElement(dialerPage.patentInformationButton);
-        
+
         //Assert that the button goes to the correct URL
         await expect.soft(page).toHaveURL(patentsPage.pageURL);
-        await expect.soft(page).toHaveTitle(patentsPage.pageTitle);    
+        await expect.soft(page).toHaveTitle(patentsPage.pageTitle);
 
         await page.waitForLoadState('load');
     })
 
     test('Test the Page Body Section Headers', async ({ page }) => {
-        
+
         await expect(page.getByRole('heading', { name: 'Your mobile medical office.' })).toBeVisible();
         await expect(page.locator('#wcag-main-content')).toContainText('Your mobile medical office.');
         await expect(page.getByRole('heading', { name: 'Features and benefits' })).toBeVisible();
@@ -1096,7 +1096,7 @@ test.describe('Dialer Page Body Tests', () => {
         await expect(page.getByRole('heading', { name: 'Upgrade to Dialer Pro or' })).toBeVisible();
         await expect(page.locator('#wcag-main-content')).toContainText('Upgrade to Dialer Pro or Enterprise');
 
-        await page.waitForLoadState('load'); 
+        await page.waitForLoadState('load');
     })
 
     test('Test the Full Page Visual Layout', async ({ page }) => {
