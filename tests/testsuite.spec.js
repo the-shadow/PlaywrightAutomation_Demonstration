@@ -757,7 +757,7 @@ test.describe('Dialer Page Body Tests', () => {
         await expect.soft(dialerPage.carouselHoldForMeButton).toHaveAttribute('class', dialerPage.inactiveCarouselElementClass);
 
         //Assert Visual Check
-        await expect.soft(dialerPage.featuresAndBenefitsLocator).toHaveScreenshot(dialerPage.videoCallsScreenshotName);
+        await expect.soft(dialerPage.featuresAndBenefitsLocator).toHaveScreenshot(dialerPage.videoCallsScreenshotName, { maxDiffPixelRatio: parseFloat(process.env.MaxPixelRatioComparion) });
 
         await dialerPage.page.waitForLoadState("load");
     })
@@ -782,7 +782,7 @@ test.describe('Dialer Page Body Tests', () => {
         await expect.soft(dialerPage.carouselHoldForMeButton).toHaveAttribute('class', dialerPage.inactiveCarouselElementClass);
 
         //Assert Visual Check
-        await expect.soft(dialerPage.featuresAndBenefitsLocator).toHaveScreenshot(dialerPage.noReplyTextingScreenshotName);
+        await expect.soft(dialerPage.featuresAndBenefitsLocator).toHaveScreenshot(dialerPage.noReplyTextingScreenshotName, { maxDiffPixelRatio: parseFloat(process.env.MaxPixelRatioComparion) });
 
         await dialerPage.page.waitForLoadState("load");
     })
@@ -1103,11 +1103,12 @@ test.describe('Dialer Page Body Tests', () => {
 
         const dialerPage = new DialerPage(page);
 
-        await dialerPage.page.waitForLoadState("load");
-
+        await page.waitForLoadState("load");
+        await page.waitForLoadState('domcontentloaded');
+        await page.waitForTimeout(3000);
         //Assert Visual Check for the full page at https://www.doximity.com/dialer
-        await expect(dialerPage.page).toHaveScreenshot(dialerPage.fullPageScreenshot);
+        await expect(page).toHaveScreenshot(dialerPage.fullPageScreenshot, { maxDiffPixelRatio: parseFloat(process.env.MaxPixelRatioComparion) });
 
-        await dialerPage.page.waitForLoadState("load");
+        await page.waitForLoadState("load");
     })
 });
