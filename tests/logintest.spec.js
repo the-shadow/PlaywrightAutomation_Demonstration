@@ -233,6 +233,64 @@ test.describe('Doximity Sign In Tests', () => {
 
     })
 
+    test('Test The Registration Button (Find Your Profile)', async ({ page }) => {
+        const dialerPage = new DialerPage(page);
+        const loginPage = new LoginPage(page);
+
+        await page.waitForLoadState('load');
+
+        await dialerPage.headerSignInButton.click();
+
+        await page.waitForLoadState('load');
+
+        await loginPage.registrationButton.click();
+
+        await page.waitForLoadState('load');
+
+        //Assertions
+        await expect.soft(page).toHaveURL('https://www.doximity.com/registration/search?bucket=sign_in_find_profile&return_to=https%3A%2F%2Fwww.doximity.com%2F');
+        await expect.soft(page).toHaveTitle('Doximity - Sign Up - Search');
+    })
+
+    test('Test The Forgot Your Password Button', async ({ page }) => {
+        const dialerPage = new DialerPage(page);
+        const loginPage = new LoginPage(page);
+
+        await page.waitForLoadState('load');
+
+        await dialerPage.headerSignInButton.click();
+
+        await page.waitForLoadState('load');
+
+        await loginPage.forgotPasswordButton.click();
+
+        await page.waitForLoadState('load');
+
+        //Assertions for page url and title
+        await expect.soft(page).toHaveURL('https://auth.doximity.com/password_reset?redirect_to=https%3A%2F%2Fwww.doximity.com%2F');
+        await expect.soft(page).toHaveTitle('Forgot your Doximity password?');
+
+        await page.getByPlaceholder('Email Address').click();
+        await page.getByPlaceholder('Email Address').fill('testemail123@pwetest.com');
+        await page.getByRole('button', { name: 'Submit' }).click();
+
+        //Assertions for sent text
+        await expect.soft(page.getByText('Check your spam folder. Still')).toBeVisible();
+        await expect.soft(page.locator('#wcag-main-content')).toContainText('Check your spam folder. Still having problems? Contact support.');
+        await expect.soft(page.getByText('If you don\'t receive the')).toBeVisible();
+        await expect.soft(page.locator('#wcag-main-content')).toContainText('If you don\'t receive the email we sent you, it\'s possible you don\'t have an account or it\'s under a different email.');
+        await expect.soft(page.getByRole('link', { name: 'Contact support' })).toBeVisible();
+        await expect.soft(page.locator('#wcag-main-content')).toContainText('Contact support');
+        
+        //Assertions for landing on help center submit a request page
+        await page.getByRole('link', { name: 'Contact support' }).click();
+        await page.waitForLoadState('load');
+        await expect.soft(page).toHaveURL('https://support.doximity.com/hc/en-us/requests/new');
+        await expect.soft(page).toHaveTitle('Submit a request – Help Center');
+    })
+});
+
+test.describe('Doximity Get the Phone App Tests', () => {
     test('Test Phone Entry for Doximity App - Empty Field', async ({ page }) => {
         const dialerPage = new DialerPage(page);
         const loginPage = new LoginPage(page);
@@ -283,7 +341,9 @@ test.describe('Doximity Sign In Tests', () => {
 
         //Assertion - Assert the success message here
     })
+});
 
+test.describe('Doximity Login Footer Tests', () => {
     test('Test Footer Help Button', async ({ page }) => {
         const dialerPage = new DialerPage(page);
         const loginPage = new LoginPage(page);
@@ -386,60 +446,6 @@ test.describe('Doximity Sign In Tests', () => {
         await expect.soft(tabs[1]).toHaveURL('https://policies.google.com/terms');
         await expect.soft(tabs[1]).toHaveTitle('Google Terms of Service – Privacy & Terms – Google');
     })
-
-    test('Test The Registration Button (Find Your Profile)', async ({ page }) => {
-        const dialerPage = new DialerPage(page);
-        const loginPage = new LoginPage(page);
-
-        await page.waitForLoadState('load');
-
-        await dialerPage.headerSignInButton.click();
-
-        await page.waitForLoadState('load');
-
-        await loginPage.registrationButton.click();
-
-        await page.waitForLoadState('load');
-
-        //Assertions
-        await expect.soft(page).toHaveURL('https://www.doximity.com/registration/search?bucket=sign_in_find_profile&return_to=https%3A%2F%2Fwww.doximity.com%2F');
-        await expect.soft(page).toHaveTitle('Doximity - Sign Up - Search');
-    })
-
-    test('Test The Forgot Your Password Button', async ({ page }) => {
-        const dialerPage = new DialerPage(page);
-        const loginPage = new LoginPage(page);
-
-        await page.waitForLoadState('load');
-
-        await dialerPage.headerSignInButton.click();
-
-        await page.waitForLoadState('load');
-
-        await loginPage.forgotPasswordButton.click();
-
-        await page.waitForLoadState('load');
-
-        //Assertions for page url and title
-        await expect.soft(page).toHaveURL('https://auth.doximity.com/password_reset?redirect_to=https%3A%2F%2Fwww.doximity.com%2F');
-        await expect.soft(page).toHaveTitle('Forgot your Doximity password?');
-
-        await page.getByPlaceholder('Email Address').click();
-        await page.getByPlaceholder('Email Address').fill('testemail123@pwetest.com');
-        await page.getByRole('button', { name: 'Submit' }).click();
-
-        //Assertions for sent text
-        await expect.soft(page.getByText('Check your spam folder. Still')).toBeVisible();
-        await expect.soft(page.locator('#wcag-main-content')).toContainText('Check your spam folder. Still having problems? Contact support.');
-        await expect.soft(page.getByText('If you don\'t receive the')).toBeVisible();
-        await expect.soft(page.locator('#wcag-main-content')).toContainText('If you don\'t receive the email we sent you, it\'s possible you don\'t have an account or it\'s under a different email.');
-        await expect.soft(page.getByRole('link', { name: 'Contact support' })).toBeVisible();
-        await expect.soft(page.locator('#wcag-main-content')).toContainText('Contact support');
-        
-        //Assertions for landing on help center submit a request page
-        await page.getByRole('link', { name: 'Contact support' }).click();
-        await page.waitForLoadState('load');
-        await expect.soft(page).toHaveURL('https://support.doximity.com/hc/en-us/requests/new');
-        await expect.soft(page).toHaveTitle('Submit a request – Help Center');
-    })
 });
+
+   
