@@ -1099,6 +1099,7 @@ test.describe('Dialer Page Body Tests', () => {
         await page.waitForLoadState('load');
     })
 
+    //This page contains an animated hero phone image that rotates, it might be difficult to verify a still screenshot
     test('Test the Full Page Visual Layout', async ({ page }) => {
 
         const dialerPage = new DialerPage(page);
@@ -1106,6 +1107,7 @@ test.describe('Dialer Page Body Tests', () => {
         await page.waitForLoadState("load");
         await page.waitForLoadState('domcontentloaded');
         await page.waitForTimeout(3000);
+
         //Assert Visual Check for the full page at https://www.doximity.com/dialer
         await expect(page).toHaveScreenshot(dialerPage.fullPageScreenshot, { maxDiffPixelRatio: parseFloat(process.env.MaxPixelRatioComparion) });
 
