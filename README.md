@@ -2,7 +2,7 @@ This project uses Playwright in VSCode to automate front end and functionality t
 
 Automation tests are run on https://www.doximity.com/dialer in this example demonstration.
 
-The main tests are in 2 files
+The main tests are in 2 files/n
 https://github.com/the-shadow/PlaywrightAutomation_Demonstration/blob/main/tests/logintest.spec.js
 https://github.com/the-shadow/PlaywrightAutomation_Demonstration/blob/main/tests/testsuite.spec.js
 
