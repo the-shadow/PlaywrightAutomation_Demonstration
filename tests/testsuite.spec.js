@@ -1099,7 +1099,7 @@ test.describe('Dialer Page Body Tests', () => {
         await page.waitForLoadState('load');
     })
 
-    //This page contains an animated hero phone image that rotates, it might be difficult to verify a still screenshot
+    //This page contains a looping video of a hero phone image that rotates, it might be difficult to verify a still screenshot.
     test('Test the Full Page Visual Layout', async ({ page }) => {
 
         const dialerPage = new DialerPage(page);
